@@ -1,0 +1,476 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     18697,        468]
+NotebookOptionsPosition[     17769,        442]
+NotebookOutlinePosition[     18258,        460]
+CellTagsIndexPosition[     18215,        457]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Koda, ki izra\[CHacek]una to\[CHacek]ke odboja, dokler svetloba ne \
+uide", "Section",
+ CellChangeTimes->{{3.931679624645743*^9, 
+  3.931679668067062*^9}},ExpressionUUID->"697f09e9-2808-4e19-8a0b-\
+2d830ffa5f63"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"ClearAll", "[", "ogledaloVIP", "]"}], "\n", 
+   RowBox[{
+    RowBox[{"ogledaloVIP", "[", 
+     RowBox[{"koef_", ",", "d_", ",", "tocka1_", ",", "vektor1_"}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"tocka", "=", "tocka1"}], ",", 
+        RowBox[{"vektor", "=", "vektor1"}], ",", 
+        RowBox[{"odboji", "=", "0"}], ",", 
+        RowBox[{"tocke", "=", 
+         RowBox[{"{", "}"}]}], ",", "a", ",", "b", ",", "c", ",", "t1", ",", 
+        "t2", ",", "gradient", ",", "proj"}], "}"}], ",", 
+      RowBox[{
+       RowBox[{"While", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Norm", "[", 
+             RowBox[{"tocka1", "-", "tocka"}], "]"}], ">=", "0.101"}], ")"}], 
+          "||", 
+          RowBox[{"(", 
+           RowBox[{"odboji", "==", "0"}], ")"}]}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"a", "=", 
+           RowBox[{"Sum", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"koef", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], "*", 
+              RowBox[{
+               RowBox[{"vektor", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], "^", "2"}]}], ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", 
+               RowBox[{"Length", "[", "vektor", "]"}]}], "}"}]}], "]"}]}], 
+          ";", "\[IndentingNewLine]", 
+          RowBox[{"b", "=", 
+           RowBox[{"Sum", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"koef", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], "*", "2", "*", 
+              RowBox[{"vektor", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], "*", 
+              RowBox[{"tocka", "[", 
+               RowBox[{"[", "i", "]"}], "]"}]}], ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", 
+               RowBox[{"Length", "[", "vektor", "]"}]}], "}"}]}], "]"}]}], 
+          ";", "\[IndentingNewLine]", 
+          RowBox[{"c", "=", 
+           RowBox[{
+            RowBox[{"Sum", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"koef", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], "*", 
+               RowBox[{
+                RowBox[{"tocka", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], "^", "2"}]}], ",", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", 
+                RowBox[{"Length", "[", "tocka", "]"}]}], "}"}]}], "]"}], "-", 
+            "d"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"t1", ",", "t2"}], "}"}], "=", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"-", "b"}], "+", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "1"}], ",", "1"}], "}"}], "*", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"b", "^", "2"}], "-", 
+                  RowBox[{"4", "*", "a", "*", "c"}]}], ")"}], "^", 
+                "0.5"}]}]}], ")"}], "/", 
+            RowBox[{"(", 
+             RowBox[{"2", "*", "a"}], ")"}]}]}], ";", "\[IndentingNewLine]", 
+          "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Abs", "[", "t1", "]"}], "<", "0.0001"}], ",", 
+            RowBox[{"tocka", "=", 
+             RowBox[{"tocka", "+", 
+              RowBox[{"t2", "*", "vektor"}]}]}], ",", 
+            RowBox[{"tocka", "=", 
+             RowBox[{"tocka", "+", 
+              RowBox[{"t1", "*", "vektor"}]}]}]}], "]"}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"gradient", "=", 
+           RowBox[{"2", "*", "koef", "*", "tocka"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"proj", "=", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"Dot", "[", 
+               RowBox[{"vektor", ",", "gradient"}], "]"}], "/", 
+              RowBox[{"Dot", "[", 
+               RowBox[{"gradient", ",", "gradient"}], "]"}]}], ")"}], "*", 
+            "gradient"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"vektor", "=", 
+           RowBox[{
+            RowBox[{"2", "*", "proj"}], "-", "vektor"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"AppendTo", "[", 
+           RowBox[{"tocke", ",", 
+            RowBox[{"Round", "[", 
+             RowBox[{"tocka", ",", "0.001"}], "]"}]}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"odboji", "+=", "1"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"odboji", "<", "100"}]}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"\"\<\[CapitalSHacek]tevilo odbojev: \>\"", ",", "odboji"}], 
+        "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", "tocke"}]}],
+      "]"}]}], "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.9316759797639847`*^9, 3.931675979766985*^9}, 
+   3.9316760165430517`*^9, {3.931676057118552*^9, 3.9316762090741215`*^9}, 
+   3.93167623999306*^9, {3.931676336388587*^9, 3.9316763786421967`*^9}, {
+   3.931676418875595*^9, 3.931676463954403*^9}, {3.931676836865037*^9, 
+   3.931676853191945*^9}, {3.931676921991912*^9, 3.9316769229900336`*^9}, {
+   3.931677371194249*^9, 3.9316774523942204`*^9}, {3.9316774907279654`*^9, 
+   3.93167749153484*^9}, {3.9316775259465923`*^9, 3.9316775902757683`*^9}, {
+   3.93167790029677*^9, 3.931677922604364*^9}, {3.9316788490813503`*^9, 
+   3.9316788559184494`*^9}, {3.9316795027603827`*^9, 
+   3.9316795203695307`*^9}, {3.931679556589344*^9, 
+   3.9316795835256023`*^9}},ExpressionUUID->"df9631cd-fb5e-46d9-8fd6-\
+57f054e9072c"],
+
+Cell[CellGroupData[{
+
+Cell["Koda, ki grafi\[CHacek]no prika\[ZHacek]e prej\[SHacek]nje", \
+"Subsection",
+ CellChangeTimes->{{3.9316801168321714`*^9, 
+  3.9316801270916367`*^9}},ExpressionUUID->"71eaf496-ebb1-4946-a900-\
+8573eff53139"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"naslednja", " ", "parametra", " ", 
+    RowBox[{"tvorita", ":", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"koef", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "*", 
+        RowBox[{"x", "^", "2"}]}], "+", 
+       RowBox[{
+        RowBox[{"koef", "[", 
+         RowBox[{"[", "2", "]"}], "]"}], "*", " ", 
+        RowBox[{"y", "^", "2"}]}], "+", 
+       RowBox[{
+        RowBox[{"koef", "[", 
+         RowBox[{"[", "3", "]"}], "]"}], "*", 
+        RowBox[{"z", "^", "2"}]}]}], " ", "==", " ", "d"}]}]}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"koef", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2", ",", "3"}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"d", " ", "=", " ", "25"}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"contourData", "=", 
+     RowBox[{"ContourPlot3D", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"koef", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "*", 
+          RowBox[{"x", "^", "2"}]}], "+", 
+         RowBox[{
+          RowBox[{"koef", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "*", " ", 
+          RowBox[{"y", "^", "2"}]}], "+", 
+         RowBox[{
+          RowBox[{"koef", "[", 
+           RowBox[{"[", "3", "]"}], "]"}], "*", 
+          RowBox[{"z", "^", "2"}]}]}], "==", "25"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", 
+         RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"y", ",", 
+         RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"z", ",", 
+         RowBox[{"-", "5"}], ",", "5"}], "}"}], ",", 
+       RowBox[{"MeshFunctions", "->", 
+        RowBox[{"{", 
+         RowBox[{"#3", "&"}], "}"}]}], ",", 
+       RowBox[{"MeshStyle", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Opacity", "[", "0.01", "]"}], ",", 
+          RowBox[{"Directive", "[", 
+           RowBox[{"Opacity", "[", "0.5", "]"}], "]"}]}], "}"}]}], ",", 
+       RowBox[{"PlotPoints", "->", "50"}], ",", 
+       RowBox[{"ContourStyle", "->", 
+        RowBox[{"Directive", "[", 
+         RowBox[{"Opacity", "[", "0.1", "]"}], "]"}]}], ",", " ", 
+       RowBox[{"PlotTheme", "->", "\"\<Classic\>\""}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"povrsinaKonture", "=", 
+     RowBox[{"First", "[", 
+      RowBox[{"contourData", "/.", " ", 
+       RowBox[{"{", 
+        RowBox[{"Surface", "->", 
+         RowBox[{"g_", ":>", "g"}]}], "}"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Funkcija", " ", "za", " ", "risanje", " ", 
+     RowBox[{"odbojev", "."}]}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"risanjeSTockami", "[", 
+      RowBox[{"n_", ",", "dodatnaTocka_", ",", "smerniVektor_"}], "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "crte", ",", "tockeZaUporabo", ",", "dodatnaCrta", ",", " ", 
+         "tocke"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"tocke", "=", 
+         RowBox[{"ogledaloVIP", "[", 
+          RowBox[{
+          "koef", ",", "d", ",", "dodatnaTocka", ",", "smerniVektor"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"tockeZaUporabo", "=", 
+         RowBox[{"Take", "[", 
+          RowBox[{"tocke", ",", "n"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"crte", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"tockeZaUporabo", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], ",", 
+              RowBox[{"tockeZaUporabo", "[", 
+               RowBox[{"[", 
+                RowBox[{"i", "+", "1"}], "]"}], "]"}]}], "}"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", "1", ",", 
+             RowBox[{
+              RowBox[{"Length", "[", "tockeZaUporabo", "]"}], "-", "1"}]}], 
+            "}"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"dodatnaCrta", "=", 
+         RowBox[{"Line", "[", 
+          RowBox[{"{", 
+           RowBox[{"dodatnaTocka", ",", 
+            RowBox[{"tockeZaUporabo", "[", 
+             RowBox[{"[", "1", "]"}], "]"}]}], "}"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"tockeInCrtePlot", "=", 
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"Red", ",", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Sphere", "[", 
+                 RowBox[{"#", ",", "0.1"}], "]"}], "&"}], "/@", 
+               "tockeZaUporabo"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"Blue", ",", "crte"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"Green", ",", "dodatnaCrta"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"Black", ",", 
+              RowBox[{"Sphere", "[", 
+               RowBox[{"dodatnaTocka", ",", "0.1"}], "]"}]}], "}"}]}], "}"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Show", "[", 
+         RowBox[{
+          RowBox[{"Graphics3D", "[", 
+           RowBox[{"{", 
+            RowBox[{"povrsinaKonture", ",", 
+             RowBox[{"Opacity", "[", "0.3", "]"}]}], "}"}], "]"}], ",", 
+          "tockeInCrtePlot"}], "]"}]}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "Ustvari", " ", "manipulacijo", " ", "za", " ", "prilagajanje", " ", 
+      "\[SHacek]tevila", " ", "to\[CHacek]k"}], ",", " ", 
+     RowBox[{"in", " ", "smernega", " ", "vektorja"}]}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"vrh", " ", "=", " ", 
+     RowBox[{"Sqrt", "[", 
+      RowBox[{"d", "/", 
+       RowBox[{"koef", "[", 
+        RowBox[{"[", "3", "]"}], "]"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Manipulate", "[", 
+    RowBox[{
+     RowBox[{"risanjeSTockami", "[", 
+      RowBox[{"n", ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "vrh"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", "b", ",", "c"}], "}"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "1", ",", 
+       RowBox[{"Min", "[", 
+        RowBox[{"60", ",", 
+         RowBox[{"Length", "[", "tocke", "]"}]}], "]"}], ",", "1", ",", 
+       RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"a", ",", " ", 
+       RowBox[{"-", "2"}], ",", " ", "2"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"b", ",", " ", 
+       RowBox[{"-", "2"}], ",", " ", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"c", ",", " ", 
+       RowBox[{"-", "2"}], ",", " ", "2"}], "}"}]}], "]"}], "\n"}]}]], "Input",
+ CellChangeTimes->{{3.9316776948157105`*^9, 3.9316776948214645`*^9}, {
+   3.931677741896964*^9, 3.931677759694796*^9}, {3.9316778206795673`*^9, 
+   3.9316778895851803`*^9}, {3.931677957158187*^9, 3.931677959953897*^9}, {
+   3.931677999556076*^9, 3.931678009151019*^9}, {3.93167809618696*^9, 
+   3.9316781079737053`*^9}, {3.931678180142111*^9, 3.931678208220293*^9}, 
+   3.9316782753238072`*^9, {3.931678476971638*^9, 3.931678500126899*^9}, {
+   3.9316786991974487`*^9, 3.9316787329601784`*^9}, {3.931678776438595*^9, 
+   3.931678807258055*^9}, {3.9316788665171185`*^9, 3.9316789079247365`*^9}, {
+   3.9316790433431764`*^9, 3.931679054259409*^9}, {3.9316792332897444`*^9, 
+   3.9316792648711767`*^9}, {3.931679302855313*^9, 3.9316793155607862`*^9}, {
+   3.931679346007126*^9, 3.9316793523222075`*^9}, {3.9316797279412265`*^9, 
+   3.931679788199109*^9}, {3.9316798352209616`*^9, 3.9316799437965384`*^9}, {
+   3.931680055816521*^9, 3.9316801017970576`*^9}, {3.9316801424532847`*^9, 
+   3.931680164329995*^9}, {3.9316802486492558`*^9, 3.9316802739114947`*^9}, {
+   3.931680355724434*^9, 3.931680373967272*^9}},
+ CellLabel->
+  "In[508]:=",ExpressionUUID->"936419f7-2df0-43e9-85f2-a4a483164278"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a$$ = -2, $CellContext`b$$ = -2, \
+$CellContext`c$$ = -2, $CellContext`n$$ = 7, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`n$$], 1, 60, 1}, {
+      Hold[$CellContext`a$$], -2, 2}, {
+      Hold[$CellContext`b$$], -2, 2}, {
+      Hold[$CellContext`c$$], -2, 2}}, Typeset`size$$ = {
+    464.47552447552437`, {232., 236.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a$$ = -2, $CellContext`b$$ = -2, \
+$CellContext`c$$ = -2, $CellContext`n$$ = 1}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> $CellContext`risanjeSTockami[$CellContext`n$$, {
+        0, 0, $CellContext`vrh}, {$CellContext`a$$, $CellContext`b$$, \
+$CellContext`c$$}], 
+      "Specifications" :> {{$CellContext`n$$, 1, 60, 1, Appearance -> 
+         "Labeled"}, {$CellContext`a$$, -2, 2}, {$CellContext`b$$, -2, 
+         2}, {$CellContext`c$$, -2, 2}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{507., {299.92062996749905`, 305.07937003250095`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.931677700606556*^9, 3.931677703720443*^9}, {
+   3.9316777612019997`*^9, 3.931677768563264*^9}, 3.9316779296626496`*^9, 
+   3.931677962082817*^9, 3.931678010984516*^9, 3.9316781100953293`*^9, 
+   3.9316782092895584`*^9, 3.931678254469674*^9, {3.9316784879884253`*^9, 
+   3.9316785017410693`*^9}, {3.9316787264254713`*^9, 3.9316787339642434`*^9}, 
+   3.9316789488540497`*^9, 3.9316790556045294`*^9, 3.9316793174735146`*^9, 
+   3.9316793533542356`*^9, 3.9316795264419875`*^9, {3.931679924510892*^9, 
+   3.931679944975232*^9}, {3.93168026116582*^9, 3.931680274918688*^9}, 
+   3.931680375860712*^9},
+ CellLabel->
+  "Out[514]=",ExpressionUUID->"5488169c-a1ec-41e4-95e8-ab238ddac665"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{966.7132867132867, 512.055944055944},
+WindowMargins->{{
+  Automatic, -5.034965034965012}, {-5.034965034965012, Automatic}},
+Magnification:>0.9 Inherited,
+FrontEndVersion->"13.3 for Microsoft Windows (64-bit) (June 3, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"931e747b-30c6-40f4-bc55-74af599b6016"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 218, 4, 59, "Section",ExpressionUUID->"697f09e9-2808-4e19-8a0b-2d830ffa5f63"],
+Cell[801, 28, 5825, 140, 393, "Input",ExpressionUUID->"df9631cd-fb5e-46d9-8fd6-57f054e9072c"],
+Cell[CellGroupData[{
+Cell[6651, 172, 212, 4, 48, "Subsection",ExpressionUUID->"71eaf496-ebb1-4946-a900-8573eff53139"],
+Cell[CellGroupData[{
+Cell[6888, 180, 8152, 204, 437, "Input",ExpressionUUID->"936419f7-2df0-43e9-85f2-a4a483164278"],
+Cell[15043, 386, 2686, 51, 622, "Output",ExpressionUUID->"5488169c-a1ec-41e4-95e8-ab238ddac665"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

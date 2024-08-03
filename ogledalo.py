@@ -1,5 +1,6 @@
+import math
 def ogledalo_vip(koef, d, tocka, vektor):
-    
+    tocke = []
     zelja = tocka
     odboji=0
     while True:
@@ -24,13 +25,12 @@ def ogledalo_vip(koef, d, tocka, vektor):
         proj = [proj*g for g in gradient]
             
         vektor = [2*p - v for p,v in zip(proj, vektor)]
-        print(f"t:{[round(t,3) for t in tocka]}, v: {[round(v,3) for v in vektor]}")
-               
-        odboji+=1   
+        #print(f"t:{[round(t,3) for t in tocka]}, v: {[round(v,3) for v in vektor]}")
+        tocke.append([round(t,3) for t in tocka])       
+        odboji+=1
         
-    return odboji
+    return odboji, tocke[:15]
     
 #print(ogledalo_vip([4,2], 100, [0,7.071],[-1.4,-19.7]))       
-
-#print(ogledalo_vip([4,1,0.5], 1, [0,0,2**0.5],[-1,-2,-1]))       
+#print(ogledalo_vip([1,2,1], 25, [0,0,5],[-1,-2,-1]))       
 
