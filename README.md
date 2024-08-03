@@ -8,6 +8,7 @@ Dobrodošli v repozitorij, ki vsebuje več projektov ustvarjenih z Wolfram Mathe
 V tej beležki so predstavljene vizualizacije nekaterih temeljnih konceptov analize, kot so:
 - Taylorjev razvoj funkcij več spremenljivk
 - Aproksimacija implicitno danih krivulj
+- Lagrangejevi multiplikatorji
 - Enakomerna zveznost
 - Riemannov integral
 
