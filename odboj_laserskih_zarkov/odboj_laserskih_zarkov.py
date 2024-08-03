@@ -1,5 +1,5 @@
 import math
-def ogledalo_vip(koef, d, tocka, vektor):
+def laser(koef, d, tocka, vektor):
     tocke = []
     zelja = tocka
     odboji=0
@@ -30,7 +30,12 @@ def ogledalo_vip(koef, d, tocka, vektor):
         odboji+=1
         
     return odboji, tocke[:15]
-    
-#print(ogledalo_vip([4,2], 100, [0,7.071],[-1.4,-19.7]))       
-#print(ogledalo_vip([1,2,1], 25, [0,0,5],[-1,-2,-1]))       
+
+# dot(koeficienti, X) = d, da enačbo elipsoida, kjer X = (x1**2, ..., xn**2)
+# laser(koeficienti, d, točka na elipsoidu od koder streljamo, smer strela) 
+
+#primera uporabe:
+  
+#print(laser([4,2], 100, [0,7.071],[-1.4,-19.7]))       
+#print(laser([1,2,1], 25, [0,0,5],[-1,-2,-1]))       
 
